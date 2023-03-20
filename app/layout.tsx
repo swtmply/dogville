@@ -1,22 +1,26 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import { getServerSession } from "next-auth";
+import "./globals.css";
+import { Inter } from "next/font/google";
+import AuthContext from "./components/AuthContext";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
-
-export const metadata = {
-  title: 'Dogville',
-  description: 'Dogville application for barking in the internet',
-}
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en" className={inter.className}>
-      <body>{children}</body>
+      <head>
+        <title>Dogville</title>
+      </head>
+      <body>
+        <AuthContext session={session}>{children}</AuthContext>
+      </body>
     </html>
-  )
+  );
 }
