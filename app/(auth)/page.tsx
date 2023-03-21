@@ -14,7 +14,7 @@ const LoginPage = () => {
             redirect: true,
           })
         }
-        className="flex gap-4 px-4 py-2 rounded bg-indigo-700 text-white hover:ring-1 ring-indigo-700 ring-offset-2"
+        className="flex gap-4 px-4 py-2 rounded bg-indigo-600 text-white hover:ring-1 ring-indigo-600 ring-offset-2"
       >
         <Image width={24} height={24} src="discord.svg" alt="discord icon" />
         <span>Login with Discord</span>
