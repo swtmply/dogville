@@ -1,10 +1,10 @@
 import {
   BellIcon,
   BookmarkIcon,
-  ChatBubbleBottomCenterIcon,
   HomeIcon,
+  MessageCircleIcon,
   UserIcon,
-} from "@heroicons/react/24/outline";
+} from "lucide-react";
 
 export interface NavigationItemProps {
   href: string;
@@ -26,7 +26,7 @@ export const navigationItems: NavigationItemProps[] = [
   {
     href: "/messages",
     label: "messages",
-    icon: <ChatBubbleBottomCenterIcon className="w-6 h-6" />,
+    icon: <MessageCircleIcon className="w-6 h-6" />,
   },
   {
     href: "/bookmarks",

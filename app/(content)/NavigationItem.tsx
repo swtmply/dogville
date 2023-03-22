@@ -1,12 +1,14 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { NavigationItemProps } from "@/lib/navigation-items";
 
-export function NavigationItem(props: NavigationItemProps) {
+function NavigationItem(props: NavigationItemProps) {
   return (
     <Link
       href={props.href}
-      className="flex gap-4 items-center text-xl px-4 py-4 hover:bg-slate-200 rounded-full"
+      className="flex gap-4 items-center text-xl px-4 py-4 hover:bg-slate-200 rounded-full duration-150"
     >
       {/* Navigation Icon */}
 
@@ -16,3 +18,5 @@ export function NavigationItem(props: NavigationItemProps) {
     </Link>
   );
 }
+
+export default NavigationItem;

@@ -1,9 +1,8 @@
 import React from "react";
-import { navigationItems } from "@/lib/navigation-items";
-import { NavigationItem } from "./NavigationItem";
-import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import UserButtonPopover from "./UserButtonPopover";
+import NavigationItems from "./NavigationItems";
 
 const BrandLogo = () => {
   return (
@@ -30,29 +29,8 @@ const Navigation = async () => {
       <div className="relative w-14 h-14 rounded-full p-2 hover:bg-slate-200 flex justify-center items-center">
         <BrandLogo />
       </div>
-      {/* Navigation Items */}
-      <div className="flex flex-col gap-2">
-        {navigationItems.map((item) => (
-          <NavigationItem {...item} key={item.href} />
-        ))}
-        {/* Bark Button */}
-        <button className="text-center w-full py-4 bg-indigo-600 text-white font-semibold rounded-full">
-          Bark
-        </button>
-      </div>
-      {/* User Button */}
-      <div className="mt-auto flex gap-2 items-center hover:bg-slate-200 p-2 rounded-full">
-        <Image
-          src={session?.user?.image || ""}
-          alt="user image"
-          width={48}
-          height={48}
-          className="rounded-full"
-        />
-        <div>
-          <p className="text-slate-400">@{session?.user?.name}</p>
-        </div>
-      </div>
+      <NavigationItems />
+      <UserButtonPopover session={session} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomePage = () => {
+const HomePage = async () => {
   return (
     <div className="border-x border-slate-200 min-h-full">
       <div className="p-4">
