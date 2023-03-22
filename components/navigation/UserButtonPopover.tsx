@@ -1,7 +1,11 @@
 "use client";
 
-import Button from "@/components/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/popover";
+import Button from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { LogOutIcon, SettingsIcon } from "lucide-react";
 import { Session } from "next-auth";
 import Image from "next/image";

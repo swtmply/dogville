@@ -1,5 +1,5 @@
-import Navigation from "./Navigation";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import Navigation from "../../components/navigation/Navigation";
+import { Aside } from "../../components/fragments/Aside";
 
 const ContentLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -8,13 +8,7 @@ const ContentLayout = ({ children }: { children: React.ReactNode }) => {
         {/* @ts-expect-error Async Server Component */}
         <Navigation />
         <div className="max-w-2xl grow min-h-screen">{children}</div>
-        {/* TODO Add aside */}
-        <div className="py-4">
-          <div className="flex w-52 rounded-full bg-slate-200 gap-2 p-4">
-            <MagnifyingGlassIcon className="w-6 h-6" />
-            <span>Search Dogville</span>
-          </div>
-        </div>
+        <Aside />
       </main>
     </div>
   );
