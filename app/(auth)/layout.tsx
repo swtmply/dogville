@@ -1,6 +1,13 @@
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-const AuthLayout = ({ children }: { children: React.ReactNode }) => {
+const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await getServerSession(authOptions);
+
+  if (session) redirect("/home");
+
   return (
     <div className="min-h-screen w-screen flex">
       {/* TODO Add pubmat */}

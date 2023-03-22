@@ -18,7 +18,7 @@ export default async function RootLayout({
       <head>
         <title>Dogville</title>
       </head>
-      <body>
+      <body className="text-slate-900">
         <AuthContext session={session}>{children}</AuthContext>
       </body>
     </html>
