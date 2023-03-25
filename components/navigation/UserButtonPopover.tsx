@@ -6,8 +6,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { LogOutIcon, SettingsIcon } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 
 interface UserButtonProps {
@@ -17,7 +18,7 @@ interface UserButtonProps {
 function UserButtonPopover(props: UserButtonProps) {
   return (
     <Popover>
-      <PopoverTrigger className="text-slate-400 mt-auto flex gap-2 items-center hover:bg-slate-200 p-2 rounded-full duration-150">
+      <PopoverTrigger className="text-slate-500 mt-auto flex gap-2 items-center hover:bg-slate-200 p-2 rounded-full duration-150">
         <Image
           src={props.session?.user?.image || ""}
           alt="user image"
@@ -25,18 +26,19 @@ function UserButtonPopover(props: UserButtonProps) {
           height={48}
           className="rounded-full"
         />
-        @{props.session?.user?.name}
+        {props.session?.user?.name}#{props.session?.user?.tag}
       </PopoverTrigger>
       <PopoverContent className="bg-slate-100 flex flex-col gap-2">
         <Button
-          icon={<SettingsIcon />}
+          icon={<Settings />}
           className="flex gap-4 hover:bg-slate-200 p-4 rounded-full duration-150"
         >
           Settings
         </Button>
         <Button
-          icon={<LogOutIcon />}
+          icon={<LogOut />}
           className="flex gap-4 hover:bg-slate-200 p-4 rounded-full duration-150"
+          onClick={() => signOut({ callbackUrl: "/", redirect: true })}
         >
           Logout
         </Button>

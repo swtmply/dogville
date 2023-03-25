@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { NavigationItemProps } from "@/lib/navigation-items";
+import { NavigationItemProps } from "./NavigationItems";
 
 function NavigationItem(props: NavigationItemProps) {
   return (

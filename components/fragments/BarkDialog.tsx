@@ -7,7 +7,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import Button from "../ui/button";
-import { Textarea } from "../ui/textarea";
+import BarkWizardForm from "./BarkWizardForm";
 
 const BarkDialog = () => {
   return (
@@ -19,11 +19,7 @@ const BarkDialog = () => {
         <DialogHeader>
           <DialogTitle>What do you bark for?</DialogTitle>
         </DialogHeader>
-        <Textarea
-          placeholder="What we feeling today?"
-          className="px-4 h-32"
-          maxLength={256}
-        />
+        <BarkWizardForm textareaClassName="min-h-[6rem] text-slate-600" />
         <Button className="bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-full font-semibold">
           Bark
         </Button>
