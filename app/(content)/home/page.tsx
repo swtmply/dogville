@@ -1,13 +1,10 @@
-import Image from "next/image";
 import { prisma } from "../../../lib/db";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import BarkWizard from "@/components/fragments/BarkWizard";
-dayjs.extend(relativeTime);
+import Barks from "@/components/fragments/Barks";
 
 const HomePage = async () => {
   const barks = await prisma.bark.findMany({
-    take: 100,
+    take: 10,
     include: { author: true },
   });
 
@@ -18,25 +15,7 @@ const HomePage = async () => {
       </div>
       {/* @ts-expect-error Async Server Component */}
       <BarkWizard />
-      {[...barks, ...barks].map((bark) => (
-        <div key={bark.id} className="flex gap-2 p-4 border-b border-slate-200">
-          <Image
-            src={bark.author.image || ""}
-            alt={`${bark.author.name}'s picture`}
-            width={48}
-            height={48}
-            className="rounded-full max-h-12"
-          />
-          <div>
-            <div className="text-slate-500 flex gap-1 text-sm">
-              <span>{`${bark.author.name}#${bark.author.tag}`}</span>
-              <span>·</span>
-              <span>{dayjs(bark.createdAt).fromNow()}</span>
-            </div>
-            <span>{bark.content}</span>
-          </div>
-        </div>
-      ))}
+      <Barks barks={barks} />
     </div>
   );
 };

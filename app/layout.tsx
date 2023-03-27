@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import AuthContext from "./AuthContext";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import QueryContext from "./QueryContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default async function RootLayout({
         <title>Dogville</title>
       </head>
       <body className="text-slate-900">
-        <AuthContext session={session}>{children}</AuthContext>
+        <QueryContext>
+          <AuthContext session={session}>{children}</AuthContext>
+        </QueryContext>
       </body>
     </html>
   );
