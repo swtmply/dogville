@@ -16,7 +16,7 @@ const BarkWizard = async () => {
         height={48}
         className="rounded-full max-h-12"
       />
-      <BarkWizardForm />
+      <BarkWizardForm session={session} />
     </div>
   );
 };

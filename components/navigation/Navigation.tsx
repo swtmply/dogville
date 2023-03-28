@@ -24,7 +24,7 @@ const Navigation = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="flex flex-col py-4 sticky top-0">
+    <div className="flex flex-col py-4 max-h-screen sticky top-0">
       {/* Brand Logo */}
       <div className="relative w-14 h-14 rounded-full p-2 hover:bg-slate-200 flex justify-center items-center">
         <BrandLogo />
