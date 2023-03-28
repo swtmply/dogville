@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import { Dispatch, SetStateAction } from "react";
 import {
   Dialog,
   DialogContent,
@@ -6,12 +8,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import Button from "../ui/button";
 import BarkWizardForm from "./BarkWizardForm";
+import { useSession } from "next-auth/react";
 
-const BarkDialog = () => {
+const BarkDialog = ({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const { data: session } = useSession();
+
   return (
-    <Dialog>
+    <Dialog onOpenChange={(o) => setOpen(o)} open={open}>
       <DialogTrigger className="text-center w-full py-4 bg-indigo-600 hover:bg-indigo-700 duration-150 text-white font-semibold rounded-full">
         Bark
       </DialogTrigger>
@@ -19,10 +29,11 @@ const BarkDialog = () => {
         <DialogHeader>
           <DialogTitle>What do you bark for?</DialogTitle>
         </DialogHeader>
-        <BarkWizardForm textareaClassName="min-h-[6rem] text-slate-600" />
-        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-full font-semibold">
-          Bark
-        </Button>
+        <BarkWizardForm
+          textareaClassName="min-h-[6rem] text-slate-600"
+          session={session}
+          setOpen={setOpen}
+        />
       </DialogContent>
     </Dialog>
   );

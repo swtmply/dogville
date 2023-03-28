@@ -6,12 +6,13 @@ import { cn } from "@/lib/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FileImage } from "lucide-react";
 import { Session } from "next-auth";
-import { useRef } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
 import { Resolver, useForm } from "react-hook-form";
 
 export interface TextareaProps {
   textareaClassName?: string;
   session: Session | null;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
 const resolver: Resolver<BarkWithUserId> = async (values) => {
@@ -21,7 +22,11 @@ const resolver: Resolver<BarkWithUserId> = async (values) => {
   };
 };
 
-const BarkWizardForm = ({ textareaClassName, session }: TextareaProps) => {
+const BarkWizardForm = ({
+  textareaClassName,
+  session,
+  setOpen,
+}: TextareaProps) => {
   const queryClient = useQueryClient();
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const { register, handleSubmit, watch, reset } = useForm<BarkWithUserId>({
@@ -33,6 +38,10 @@ const BarkWizardForm = ({ textareaClassName, session }: TextareaProps) => {
   const onSubmit = handleSubmit((data) => {
     mutate({ ...data, authorId: session?.user?.id ?? "" });
     reset();
+
+    if (setOpen) {
+      setOpen(false);
+    }
   });
 
   const { mutate, isLoading } = useMutation(

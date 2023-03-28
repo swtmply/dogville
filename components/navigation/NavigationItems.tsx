@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import NavigationItem from "./NavigationItem";
 import BarkDialog from "../fragments/BarkDialog";
 import { Bell, Bookmark, Home, MessageCircle, User } from "lucide-react";
@@ -39,12 +39,14 @@ export const navigationItems: NavigationItemProps[] = [
 ];
 
 const NavigationItems = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="flex flex-col gap-2">
       {navigationItems.map((item) => (
         <NavigationItem {...item} key={item.href} />
       ))}
-      <BarkDialog />
+      <BarkDialog open={open} setOpen={setOpen} />
     </div>
   );
 };
